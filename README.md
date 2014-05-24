@@ -12,6 +12,18 @@ The result is a much more beautiful Sublime when using dark UI themes because th
 
 ![After](after.png?raw=true)
 
+## Installation
+
+### Through Package Control (recommended)
+
+1. Run "Package Control: Install Package" from the Sublime Text Command Palette (<kbd>Shift+Ctrl+P</kbd>)
+2. In the list, select "GTKDarkThemeVariantSetter" and press <kbd>Return</kbd>
+
+### Manually
+
+1. `cd` into your Sublime Text packages directory (e.g. `.config/sublime-text-2/Packages`)
+2. Run `git clone https://github.com/p-e-w/GTKDarkThemeVariantSetter.git`
+
 ## How it works
 
 Sublime Text (like most other extensible applications) does not provide hooks into its low-level windowing logic. This plugin demonstrates a technique that nevertheless allows for fine-grained control over windows, provided that standard Linux and X.Org tools are present on the system:
