@@ -31,7 +31,7 @@ Sublime Text (like most other extensible applications) does not provide hooks in
 1. Find the application's process ID by name with `pidof [NAME]`
 2. Find all top-level windows (and their IDs) with `xprop -root _NET_CLIENT_LIST`
 3. For each window ID thus found, get the associated process ID with `xprop -id [ID] _NET_WM_PID`
-4. If the process ID thus obtained matches the application's process ID, set the dark theme variant for the window with `xprop -id [ID] -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT dark`
+4. If the process ID thus obtained matches the application's process ID, set the dark theme variant for the window with `xprop -id [ID] -f _GTK_THEME_VARIANT 8u -set _GTK_THEME_VARIANT dark` (some background on this very poorly documented property can be found [here](https://mail.gnome.org/archives/commits-list/2011-May/msg05622.html) and [here](http://unix.stackexchange.com/a/24071))
 
 ## License
 
