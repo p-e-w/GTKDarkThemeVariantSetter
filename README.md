@@ -6,11 +6,11 @@ The result is a much more beautiful Sublime when using dark UI themes because th
 
 ### Before (Sublime Text 3 on Fedora 20)
 
-![Before](before.png?raw=true)
+![Before](https://raw.githubusercontent.com/p-e-w/GTKDarkThemeVariantSetter/images/before.png)
 
 ### After
 
-![After](after.png?raw=true)
+![After](https://raw.githubusercontent.com/p-e-w/GTKDarkThemeVariantSetter/images/after.png)
 
 ## Installation
 
