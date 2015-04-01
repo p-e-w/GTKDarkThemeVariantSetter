@@ -20,7 +20,7 @@ class GTKDarkThemeVariantSetter(sublime_plugin.EventListener):
 	def get_sublime_pids(self):
 		# This relies on Sublime Text's program name being "subl", "sublime" or "sublime_text".
 		# Edit the parameters if the name is different on your system
-		return self.get_output_matches(["pidof", "subl", "sublime", "sublime_text"], "\d+")
+		return self.get_output_matches(["pidof", "subl", "subl3", "sublime", "sublime_text"], "\d+")
 
 	def get_window_ids(self):
 		return self.get_output_matches(["xprop", "-root", "_NET_CLIENT_LIST"], "0x[0-9a-f]+")
