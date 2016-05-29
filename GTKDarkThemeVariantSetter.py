@@ -26,7 +26,8 @@ class GTKDarkThemeVariantSetter(sublime_plugin.EventListener):
 		return self.get_output_matches(["xprop", "-root", "_NET_CLIENT_LIST"], "0x[0-9a-f]+")
 
 	def get_pid_from_window_id(self, window_id):
-		return self.get_output_matches(["xprop", "-id", window_id, "_NET_WM_PID"], "\d+")[0]
+		matches = self.get_output_matches(["xprop", "-id", window_id, "_NET_WM_PID"], "\d+")
+		return matches[0] if len(matches) > 0 else None
 
 	def set_dark_theme(self, window_id):
 		subprocess.call(["xprop", "-id", window_id, "-f", "_GTK_THEME_VARIANT", "8u",
