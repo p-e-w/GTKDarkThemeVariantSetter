@@ -11,6 +11,10 @@ import subprocess
 import re
 
 class GTKDarkThemeVariantSetter(sublime_plugin.EventListener):
+
+	darkened_windows = []
+	window_pids = {}
+
 	def get_output_matches(self, arguments, pattern):
 		# The superior subprocess.check_output was introduced in Python 2.7
 		# and thus is not supported by Sublime Text 2
@@ -26,12 +30,17 @@ class GTKDarkThemeVariantSetter(sublime_plugin.EventListener):
 		return self.get_output_matches(["xprop", "-root", "_NET_CLIENT_LIST"], "0x[0-9a-f]+")
 
 	def get_pid_from_window_id(self, window_id):
-		matches = self.get_output_matches(["xprop", "-id", window_id, "_NET_WM_PID"], "\d+")
-		return matches[0] if len(matches) > 0 else None
+		if window_id not in self.window_pids:
+			matches = self.get_output_matches(["xprop", "-id", window_id, "_NET_WM_PID"], "\d+")
+			pid = matches[0] if len(matches) > 0 else None
+			self.window_pids[window_id] = pid
+		return self.window_pids[window_id]
 
 	def set_dark_theme(self, window_id):
-		subprocess.call(["xprop", "-id", window_id, "-f", "_GTK_THEME_VARIANT", "8u",
-		                 "-set", "_GTK_THEME_VARIANT", "dark"])
+		if window_id not in self.darkened_windows:
+			self.darkened_windows.append(window_id)
+			subprocess.call(["xprop", "-id", window_id, "-f", "_GTK_THEME_VARIANT", "8u",
+			                 "-set", "_GTK_THEME_VARIANT", "dark"])
 
 	# Unfortunately, on_new is not sufficient for the purposes of this plugin
 	# because on_new hooks are usually invoked before the window is created
